@@ -26,7 +26,7 @@ const Login = () => {
                                 <input type='password' placeholder='Enter Password' className='form-control' required autocomplete='off'/>
                                 </div>
                                 <div className='m-t-30 text-left d-flex'>
-                                    <Link to='/forgot-password' className='forgot-password'>
+                                    <Link to='/forgotpassword' className='forgot-password'>
                                    
                                         <div  className='text-right f-w-600 text-inverse'>
                                             <i className='iconfont iconfont-lock'>Forgot pasword?</i>

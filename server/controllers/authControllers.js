@@ -79,7 +79,7 @@ exports.refreshtoken = async (req,res)=>{
         if(!refresh_token){
             return res.status(400).json({msg: 'please login now'})
         }
-        JsonWeTokenError.verify(refresh_token,process.env.REFRESH_TOKEN_SECRET, async(err,result)=>{
+        JsonWebTokenError.verify(refresh_token,process.env.REFRESH_TOKEN_SECRET, async(err,result)=>{
             if(err){
                 return res.status(400).json({msg: 'please login now'})
                 const user = await User.findById(result.id).select('password')
