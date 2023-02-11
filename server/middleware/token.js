@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const User = requre('../models/User.js')
+const User = require('../models/User.js')
 require('dotenv').config()
 exports.createAccessToken= (payload)=>{
     return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET,{expiresIn:"1d"})

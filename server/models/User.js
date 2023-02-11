@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const{objectId} = mongoose.Schema.types
+const {ObjectId} = mongoose.Schema.Types
+// const bcrypt = require('bcrypt')
 const userSchema = new mongoose.Schema({
     name:{
         type:String, required:true
@@ -13,21 +14,34 @@ const userSchema = new mongoose.Schema({
     pic:{
         type:String, 
     },
-    followers:{[
-        type:objectId, ref:"user", ]
-    },
-    following:{[
-        type:objectId, ref:"user",] 
-    },
-    stories:{[
-        user:[type:objectId, ref:"user"],
+    followers:[{
+        type:ObjectId, ref:"User"
+    }],
+    following:[{
+        type:ObjectId, ref:"User"
+    }],
+    stories:[{
+        user:{type:ObjectId, ref:"User"},
         storyPic:String,
-        storyDate: Date,]
-    }
+        storyDate:Date
+    }],
     resetToken:String,
-    expireToken:String,
+    expireToken:String
+},{timestamps:true})
 
-},[timestamps:true])
+    // userSchema.pre('save', async function(next){
+    //     if(!this.isModified('password')){
+    //         next();
+    //     }
+    
+    //     const salt = await bcrypt.genSalt(10)
+    //     this.password= await bcrypt.hash(this.password,salt);
+    // })
+
+    // userSchema.methods.matchPassword = async function (enteredPassword) {
+    //     return await bcrypt.compare(enteredPassword, this.password);
+    //   };
+    
 
 const User = mongoose.model('User',userSchema)
 
