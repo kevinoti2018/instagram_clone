@@ -105,7 +105,7 @@ exports.refreshtoken = async (req,res)=>{
 exports.resetPassword = (req,res)=>{
     let smtpTransport = nodemailer.createTransport({
         host:'smtp.gmail.com',
-        service:'Gmail',
+        service:'gmail',
         port:465,
         secure:true,
         auth:{
