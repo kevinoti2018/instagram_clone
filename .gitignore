@@ -6,6 +6,9 @@
 /server/node_modules
 .env
 env
+/env
+/.env/
+server/.env
 ./env
 /.pnp
 /env
