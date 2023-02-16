@@ -8,6 +8,8 @@
 env
 ./env
 /.pnp
+/env
+/server/env
 .pnp.js
 
 # testing
