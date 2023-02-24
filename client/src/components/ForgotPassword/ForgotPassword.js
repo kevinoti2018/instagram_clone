@@ -1,6 +1,34 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {Link} from 'react-router-dom'
+import {resetNewPassword} from '../../Features/Auth/AuthActions'
+import { toast, ToastContainer } from 'react-toastify'
+import { useDispatch ,useSelector} from 'react-redux';
+import { validEmail } from '../../Utils/Utils'
 const ForgotPassword = () => {
+    const [email, setEmail] = useState('')
+    const dispatch = useDispatch()
+    const authState = useSelector((state)=>state.auth)
+    const {isError, isNewPasswordSuccess,message} = authState
+    
+    const resetPassword = async (e)=>{
+        e.preventeDefault()
+        if(validEmail(email)){
+            await dispatch(resetNewPassword(email));
+
+            if(isNewPasswordSuccess){
+                await toast.success(message)
+                setEmail('')
+            }
+            else if(isError){
+                await toast.error("Something went wrong")
+            }
+        }
+        else{
+            toast.error("Invalid Email")
+            return;
+        }
+
+    }
   return (
     <div className='container'>
         <div className='row w-530'>
@@ -10,13 +38,14 @@ const ForgotPassword = () => {
                         <h1 className='brand-logo text-center'>Instagram</h1>
                         
                         <br/>
+                        <ToastContainer/>
                         <div className='col-12'>
-                            <form className='w-300'>
+                            <form className='w-300' onSubmit={resetPassword} >
                                 <div className='input-group'>
                                 <span className='input-group-addon'>
                                     <i className='icofont icofont-email'></i>
                                 </span>
-                                <input type='email' placeholder='Email Address' className='form-control' required autocomplete='off'/>
+                                <input type='email' placeholder='Email Address' className='form-control' required autocomplete='off' value={email} onChange={(e)=>setEmail(e.target.value)}/>
                                 </div>
                               
                                 <div className='m-t-20'>

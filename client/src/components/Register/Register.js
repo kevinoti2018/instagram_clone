@@ -8,8 +8,7 @@ import {register} from '../../Features/Auth/AuthActions'
 // validation
 
 let schema = yup.object().shape({
-    email:yup.string()
-    .email("Email should be valid").required("Email is required"),
+    email:yup.string().email("Email should be valid").required("Email is required"),
     password:yup.string().required("Password is required"),
     name:yup.string().required("Name is required")
 })
@@ -23,11 +22,11 @@ const Register = () => {
             password:"",
             name:""
         },
-        validationSChema: schema,
-        onSubmit: (values)=>{
-            console.log(values)
-            console.log('hi');
-            dispatch(register(values))}
+        validationSchema:schema,
+        onSubmit:(values)=>{
+            console.log(values);
+            dispatch(register(values))
+        }
     })
     return (
         <div className='container'>
@@ -39,7 +38,7 @@ const Register = () => {
                             <h3 className='text-secondary text-center' >Signup to see photos and videos of your friends</h3>
                             <br/>
                             <div className='col-12'>
-                                <form className='w-300' onSubmit={formik.submit} >
+                                <form className='w-300' onSubmit={formik.handleSubmit} >
                                     <div className='input-group'>
                                     <span className='input-group-addon'>
                                         <i className='icofont icofont-email'></i>
