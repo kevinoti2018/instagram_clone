@@ -24,7 +24,7 @@ const Register = () => {
         },
         validationSchema:schema,
         onSubmit:(values)=>{
-            console.log(values);
+            //console.log(values);
             dispatch(register(values))
         }
     })

@@ -14,7 +14,7 @@ const ForgotPassword = () => {
         e.preventeDefault()
         if(validEmail(email)){
             await dispatch(resetNewPassword(email));
-
+            console.log(email)
             if(isNewPasswordSuccess){
                 await toast.success(message)
                 setEmail('')
