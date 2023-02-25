@@ -1,28 +1,40 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { AuthService } from "./AuthService";
 
-import {createAsyncThunk} from '@reduxjs/toolkit';
-import { AuthService } from './AuthService';
 
-export const register = createAsyncThunk('auth/signup',async (userData,thunkApi)=>{
-    try{
+
+export const register = createAsyncThunk("auth/signup",
+async(userData,thunkAPI)=>{
+    try {
         return AuthService.register(userData)
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error)
     }
-    catch(error){
-        return thunkApi.rejectWithValue(error)
-    }
-}) 
-export const login = createAsyncThunk('auth/signin',async (userData,thunkApi)=>{
-    try{
+})
+
+export const login = createAsyncThunk("auth/signin",
+async(userData,thunkAPI)=>{
+    try {
         return AuthService.login(userData)
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error)
     }
-    catch(error){
-        return thunkApi.rejectWithValue(error)
+})
+
+export const resetNewPassword = createAsyncThunk("auth/reset-password",
+async(email,thunkAPI)=>{
+    try {
+        return AuthService.resetNewPassword(email)
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error)
     }
-}) 
-export const  resetNewPassword= createAsyncThunk('auth/reset-password',async (email,thunkApi)=>{
-    try{
-        return AuthService.reseNewPassword(email)
+})
+
+export const newPassword = createAsyncThunk("auth/new-password",
+async(tokenData,thunkAPI)=>{
+    try {
+        return AuthService.newPassword(tokenData)
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error)
     }
-    catch(error){
-        return thunkApi.rejectWithValue(error)
-    }
-}) 
+})

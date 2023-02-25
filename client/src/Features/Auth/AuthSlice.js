@@ -1,9 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { getUserfromLocalStorage } from "../../Utils/Utils"
-import { login,
-     register, 
-     resetNewPassword
-    } from "./AuthActions"
+import { login, newPassword, register, resetNewPassword } from "../Auth/AuthActions"
 
 
 const initialState={
@@ -83,28 +80,28 @@ export const authSlice = createSlice({
         })
 
         //newPassword
-        // .addCase(newPassword.pending,(state)=>{
-        //     state.isLoading=true
-        // })
-        // .addCase(newPassword.fulfilled,(state,action)=>{
-        //     console.log("action",action);
-        //     state.isLoading = false;
-        //     state.isError=false;
-        //     state.isRegisterSuccess=false;
-        //     state.isLoginSuccess = false;
-        //     state.isNewPasswordSuccess = false;
-        //     state.isPasswordSuccess = true;
-        //     state.message = action.payload.msg
-        // })
-        // .addCase(newPassword.rejected,(state,action)=>{
-        //     state.isLoading=false;
-        //     state.isError=true;
-        //     state.isRegisterSuccess=false;
-        //     state.isLoginSuccess = false;
-        //     state.isNewPasswordSuccess =false;
-        //     state.isPasswordSuccess = false;
-        //     state.message=''
-        // })
+        .addCase(newPassword.pending,(state)=>{
+            state.isLoading=true
+        })
+        .addCase(newPassword.fulfilled,(state,action)=>{
+            console.log("action",action);
+            state.isLoading = false;
+            state.isError=false;
+            state.isRegisterSuccess=false;
+            state.isLoginSuccess = false;
+            state.isNewPasswordSuccess = false;
+            state.isPasswordSuccess = true;
+            state.message = action.payload.msg
+        })
+        .addCase(newPassword.rejected,(state,action)=>{
+            state.isLoading=false;
+            state.isError=true;
+            state.isRegisterSuccess=false;
+            state.isLoginSuccess = false;
+            state.isNewPasswordSuccess =false;
+            state.isPasswordSuccess = false;
+            state.message=''
+        })
 
     }
 })
