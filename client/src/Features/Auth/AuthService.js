@@ -21,7 +21,7 @@ const login =async(user)=>{
 }
 const resetNewPassword =async(email)=>{
     
-    const response = await axios.post(`${baseUrl}/reset-passsword`,{email});
+    const response = await axios.post(`${baseUrl}/reset-password`,{email});
     console.log("eml ",response);
     return response.data
 }
