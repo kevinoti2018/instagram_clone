@@ -1,9 +1,11 @@
-import React from 'react'
+import React ,{useEffect}from 'react'
 import { Link,useNavigate } from 'react-router-dom';
 import {useDispatch,useSelector} from 'react-redux'
 import * as yup from 'yup'
 import {useFormik} from 'formik'
 import {register} from '../../Features/Auth/AuthActions'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // validation
 
@@ -15,7 +17,8 @@ let schema = yup.object().shape({
 const Register = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const authState = useSelector((state)=>state.auth)
+    const authState = useSelector(state=>state.auth)
+    const {isRegisterSuccess,message} = authState
     const formik = useFormik({
         initialValues:{
             email:"",
@@ -26,8 +29,20 @@ const Register = () => {
         onSubmit:(values)=>{
             //console.log(values);
             dispatch(register(values))
+            
         }
+       
     })
+    useEffect(()=>{
+        if(isRegisterSuccess){
+            toast.success(message)
+            navigate("/")// to login
+        }
+        else{
+            navigate("/register")
+        }
+    },[navigate,isRegisterSuccess])
+
     return (
         <div className='container'>
             <div className='row w-530'>
@@ -37,6 +52,7 @@ const Register = () => {
                             <h1 className='brand-logo text-center'>Instagram</h1>
                             <h3 className='text-secondary text-center' >Signup to see photos and videos of your friends</h3>
                             <br/>
+                            <ToastContainer/>
                             <div className='col-12'>
                                 <form className='w-300' onSubmit={formik.handleSubmit} >
                                     <div className='input-group'>

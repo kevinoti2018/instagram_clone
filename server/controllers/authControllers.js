@@ -103,6 +103,7 @@ exports.refreshtoken = async (req,res)=>{
 }
 
 exports.resetPassword = (req,res)=>{
+    console.log(res.body);
     let smtpTransport = nodemailer.createTransport({
         host:'smtp.gmail.com',
         service:'gmail',
@@ -146,6 +147,7 @@ exports.resetPassword = (req,res)=>{
 }
 
 exports.newPassword = (req,res)=>{
+    console.log(res.body);
     const newPassword = req.body.password
     const sentToken = req.body.token
     User.findOne({resetToken:sentToken, expireToken:{$gt:Date.now()}})

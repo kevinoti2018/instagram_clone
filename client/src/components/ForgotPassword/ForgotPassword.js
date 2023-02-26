@@ -2,25 +2,28 @@ import React,{useState} from 'react'
 import {Link} from 'react-router-dom'
 import {resetNewPassword} from '../../Features/Auth/AuthActions'
 import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch ,useSelector} from 'react-redux';
 import { validEmail } from '../../Utils/Utils'
+import * as yup from 'yup'
+import { useFormik } from 'formik';
 const ForgotPassword = () => {
     const [email, setEmail] = useState('')
     const dispatch = useDispatch()
     const authState = useSelector((state)=>state.auth)
     const {isError, isNewPasswordSuccess,message} = authState
     
-    const resetPassword = async (e)=>{
-        e.preventeDefault()
+    const resetPassword = async(e)=>{
+        e.preventDefault()
         if(validEmail(email)){
             await dispatch(resetNewPassword(email));
             console.log(email)
             if(isNewPasswordSuccess){
-                await toast.success(message)
+                 toast.success(message)
                 setEmail('')
             }
             else if(isError){
-                await toast.error("Something went wrong")
+                toast.error("Something went wrong")
             }
         }
         else{
@@ -45,7 +48,7 @@ const ForgotPassword = () => {
                                 <span className='input-group-addon'>
                                     <i className='icofont icofont-email'></i>
                                 </span>
-                                <input type='email' placeholder='Email Address' className='form-control' required autocomplete='off' value={email} onChange={(e)=>setEmail(e.target.value)}/>
+                                <input type='email' placeholder='Email Address' className='form-control' required autoComplete='off' value={email} onChange={(e)=>setEmail(e.target.value)}/>
                                 </div>
                               
                                 <div className='m-t-20'>
