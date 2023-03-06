@@ -1,6 +1,6 @@
 const User = require('../models/User')
 const jwt = require('jsonwebtoken')
-require('doten').config()
+require('dotenv').config()
 
 const requireLogin = async(req,res,next)=>{
     try{
