@@ -1,5 +1,5 @@
 import React from 'react'
-import Mainlayout from '../MainLayout/MainLayout';
+import MainLayout from '../MainLayout/MainLayout';
 import Story from './Story';
 import Posts from './Posts';
 import Suggestion from './Suggestion';
@@ -7,7 +7,7 @@ import Suggestion from './Suggestion';
 export default function Home() {
   return (
     <div>
-    <Mainlayout/>
+    <MainLayout/>
     <section className='main-container'>
     <div className='inner-container'>
     <div className='left-section'>

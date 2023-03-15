@@ -3,13 +3,16 @@ import {BrowserRouter as Router,Routes ,Route} from 'react-router-dom'
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import ForgotPassword from './components/ForgotPassword/ForgotPassword';
-import MainLayout from './components/MainLayout/MainLayout'
 import Home from './components/Home/Home';
 import ResetPassword from './components/ResetPassword/ResetPassword';
+import MainLayout from './components/MainLayout/MainLayout';
+import CreatePost from './components/CreatePost/CreatePost';
 function App() {
   return (
     <div className="App">
+    
       <Router>
+      
         <Routes>
           <Route path='/' element={<Login/>} />
           <Route path='/register' element={<Register/>} />
@@ -17,7 +20,8 @@ function App() {
           <Route path='/forgotpassword' element={<ForgotPassword/>} />
           <Route path='/reset/:token' element={<ResetPassword/>} />
           <Route element={<MainLayout/>}/>
-          <Route exatct path='/home' element={<Home/>} />
+          <Route exact path='/home' element={<Home/>} />
+          <Route exact path='/createPost' element={<CreatePost/>} />
         </Routes>
       </Router>
     </div>
