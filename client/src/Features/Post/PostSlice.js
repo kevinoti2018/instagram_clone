@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createPost } from './PostAction';
+import { createPost,getPosts } from './PostAction';
 const initialState={
     posts:[],
     isError:false,
@@ -10,7 +10,7 @@ const initialState={
 
 
 
-export const authSlice = createSlice({
+export const postSlice = createSlice({
     name:"post",
     initialState:initialState,
     reducers:{},
@@ -24,10 +24,29 @@ export const authSlice = createSlice({
             state.isLoading = false;
             state.isError=false;
             state.isPostSuccess=true;
-            state.posts = state.push(action.payload.data.result)
-            state.message = "success"
+            state.posts = action.payload.data.result
+            state.message = action.payload.msg
         })
         .addCase(createPost.rejected,(state)=>{
+            state.isLoading = false;
+            state.isError=true;
+            state.isPostSuccess=false;
+            state.message = "error"
+        })
+
+        // getPosts
+        .addCase(getPosts.pending,(state)=>{
+            state.isLoading=true
+        })
+        .addCase(getPosts.fulfilled,(state,action)=>{
+            console.log('action', action);
+            state.isLoading = false;
+            state.isError=false;
+            state.isPostSuccess=true;
+            state.posts = action.payload.posts
+            state.message = action.payload.msg
+        })
+        .addCase(getPosts.rejected,(state)=>{
             state.isLoading = false;
             state.isError=true;
             state.isPostSuccess=false;
@@ -37,4 +56,4 @@ export const authSlice = createSlice({
     }
 })
 
-export default authSlice.reducer
+export default postSlice.reducer

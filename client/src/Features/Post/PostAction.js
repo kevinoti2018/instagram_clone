@@ -9,3 +9,12 @@ async(postdata,thunkAPI)=>{
         return thunkAPI.rejectWithValue(error)
     }
 })
+
+export const getPosts = createAsyncThunk("post/getPost",async(thunkAPI)=>{
+    try{
+        return PostService.getPosts()
+    }
+    catch(error){
+        return thunkAPI.rejectWithValue(error)
+    }
+})

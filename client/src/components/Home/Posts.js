@@ -4,15 +4,15 @@ import image2 from '../../assets/icon/comment.svg'
 import image3 from '../../assets/icon/share.svg'
 import image4 from '../../assets/icon/emoji.svg'
 import{ timeSince} from '../../Utils/Utils'
-const Posts = () => {
+const Posts = ({post,currentUser}) => {
   return (
     <div className='post-list'>
         <div className='post'>
             <div className='p_d'>
                 <div className='p_inner'>
-                    <img className='p_p' alt="image1" src={image1}/>
+                    <img className='p_p' alt="image1" src={post.postedBy.pic}/>
                     <a href=''>
-                        <p className='p_name'>Loyd</p>
+                        <p className='p_name'>{post.postedBy.name}</p>
                     </a>
                 </div>
                 <i className='fas fa-ellipsis-h threedots'></i>

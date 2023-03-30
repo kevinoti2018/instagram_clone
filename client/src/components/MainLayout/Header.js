@@ -22,7 +22,7 @@ export default function Header() {
         <div className="iconbar">
             <Link to="/home"><img className='icon_1' src={image1} alt=""/></Link>
             <Link to="/explore"><img className='icon_1' src={image4} alt=""/></Link>
-            <Link to="/createPosts"><img className='icon_1' src={image5} alt=""/></Link>
+            <Link to="/createPost"><img className='icon_1' src={image5} alt=""/></Link>
             <Link to="/savePosts"><img className='icon_1' src={image2} alt=""/></Link>
             <Link to="/profile"><img className='icon_11' src={image3}  alt=""/></Link>
 

@@ -19,9 +19,10 @@ function App() {
           <Route path='/register' element={<Register/>} />
           <Route path='/forgotpassword' element={<ForgotPassword/>} />
           <Route path='/reset/:token' element={<ResetPassword/>} />
-          <Route element={<MainLayout/>}/>
+          <Route element={<MainLayout/>}>
           <Route exact path='/home' element={<Home/>} />
           <Route exact path='/createPost' element={<CreatePost/>} />
+          </Route>
         </Routes>
       </Router>
     </div>
